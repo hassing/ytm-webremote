@@ -11,3 +11,7 @@ Browsers like Chrome no longer allows calling HTTP and will automatically redire
 _Q: I can't connect to [lan-ip]:9863?_
 
 The API port must be forwarded on your router to allow access from the internet to use it from ytm.hassing.org. Install on a local server to use it without opening for internet trafic.
+
+## Screenshot
+
+![](screenshot.png)
