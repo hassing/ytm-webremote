@@ -253,7 +253,19 @@ if(isset($_POST["auth"]) && isset($_POST["server"])) {
             }).then(response => response.json())
             .then(data => {
                 var list = [];
-                for(var i=2; i>0; i--) {
+
+                // Fix for currentIndex always being zero when playlist is expanded by autoplay.
+                // Find position of song manually.
+                if(data.currentIndex == 0 && data.list.length > 0 && data.list[0].title != currentData.song) {
+                    for(var i=0; i<data.list.length; i++) {
+                        if(data.list[i].title == currentData.song) {
+                            data.currentIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                for(var i=(data.list.length-data.currentIndex > 18 ? 2 : 20-(data.list.length-data.currentIndex)); i>0; i--) {
                     var idx = data.currentIndex - i;
                     if(idx < 0) {
                         continue;
